@@ -19,7 +19,7 @@ modules: [
 ## Configuration options
 
 The following properties can be configured:
-inde
+idleInterval - Interval of idle time after which all modules are hidden
 
 ## Developer Notes
 This module listens on the `USER_PRESENCE` notification sent by [MMM-PIR motion](https://github.com/paviro/MMM-PIR-Sensor). Follow it's documentation to set that module up. 
