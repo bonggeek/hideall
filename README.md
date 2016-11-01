@@ -1,11 +1,9 @@
-# MMM-PIR-Sensor
-This an extension for the [MagicMirror](https://github.com/MichMich/MagicMirror). It can monitor a [PIR motion](http://www.amazon.com/2013newestseller-HC-SR501-Pyroelectric-Infrared-Detector/dp/B00FDPO9B8) sensor and put your mirror to sleep if nobody uses it by turning off HDMI output or by turning off the mirror via a relay.
+# hideall
+This an extension for the [MagicMirror](https://github.com/MichMich/MagicMirror). It works with [MMM-PIR motion](https://github.com/paviro/MMM-PIR-Sensor) module and can show hide everything on the MagicMirror display based on motion sensing. Even though MMM-PIR module has direct support to shut off the HDMI on idle time, it did not work for me. This uses a different approach of enumerating MagicMirror modules and show/hide them based on motion.
 
 ## Installation
-1. Navigate into your MagicMirror's `modules` folder and execute `git clone https://github.com/paviro/MMM-PIR-Sensor.git`. A new folder will appear navigate into it.
+1. Navigate into your MagicMirror's `modules` folder and execute `git clone https://github.com/bonggeek/hideall.git`. A new folder will appear navigate into it.
 2. Execute `npm install` to install the node dependencies.
-3. Add your user (`pi`?) to the `gpio group` by executing `sudo useradd -g pi gpio`.
-4. Reboot your Pi.
 
 ## Using the module
 
@@ -13,10 +11,7 @@ To use this module, add it to the modules array in the `config/config.js` file:
 ````javascript
 modules: [
 	{
-		module: 'MMM-PIR-Sensor',
-		config: {
-			// See 'Configuration options' for more information.
-		}
+		module: 'hideall'
 	}
 ]
 ````
@@ -24,55 +19,10 @@ modules: [
 ## Configuration options
 
 The following properties can be configured:
-
-
-<table width="100%">
-	<!-- why, markdown... -->
-	<thead>
-		<tr>
-			<th>Option</th>
-			<th width="100%">Description</th>
-		</tr>
-	<thead>
-	<tbody>
-		<tr>
-			<td><code>sensorPIN</code></td>
-			<td>The pin your PIR-sensor is connected to.<br>
-				<br><b>Possible values:</b> <code>int</code>
-				<br><b>Default value:</b> <code>22</code>
-				<br><b>Note:</b> Please use BCM-numbering.
-			</td>
-		</tr>
-		<tr>
-			<td><code>powerSaving</code></td>
-			<td>Should the monitor be turned off if no user is present? (via HDMI or relay)<br>
-				<br><b>Possible values:</b> <code>boolean</code>
-				<br><b>Default value:</b> <code>true</code>
-			</td>
-		</tr>
-		<tr>
-			<td><code>relayPIN</code></td>
-			<td>If you want to use a relay to turn of the mirror provide the pin here. If no pin is provided HDMI is turned off instead.<br>
-				<br><b>Possible values:</b> <code>int</code>
-				<br><b>Default value:</b> <code>none</code>
-				<br><b>Note:</b> Please use BCM-numbering.
-			</td>
-		</tr>
-		<tr>
-			<td><code>relayOnState</code></td>
-			<td>GPIO-state your relay is turned on.<br>
-				<br><b>Possible values:</b> <code>int</code>
-				<br><b>Default value:</b> <code>1</code>
-			</td>
-		</tr>
-	</tbody>
-</table>
+inde
 
 ## Developer Notes
-This module broadcasts a `USER_PRESENCE` notification with the payload beeing `true` or `false` you can use it to pause or disable your module.
-
-## Dependencies
-- [wiring-pi](https://www.npmjs.com/package/wiring-pi) (installed via `npm install`)
+This module listens on the `USER_PRESENCE` notification sent by [MMM-PIR motion](https://github.com/paviro/MMM-PIR-Sensor). Follow it's documentation to set that module up. 
 
 The MIT License (MIT)
 =====================
